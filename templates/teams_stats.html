@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% load custom_filter_tags %}
+{% load static %}
+
+{% block page_content %}
+    <div class="js-expand-subnav subnav subnav--article">
+        <div class="gs-container">
+            <ul class="subnav__list js-get-last-child-subnav" data-pillar-title="Sport">
+
+                <li class="subnav__item subnav__item--parent">
+                    <a class="subnav-link" href="{% url 'upcoming view' slug %}">
+                        Upcoming
+                    </a>
+                </li>
+                <li class="subnav__item subnav__item--parent">
+                    <a class="subnav-link" href="{% url 'past view' slug %}">
+                        Past
+                    </a>
+                </li>
+
+                <li class="subnav__item">
+                    <form role="form" method="GET">
+                        <input class="gsc-input-box" type="text" name="team" placeholder="Search" aria-label="Search">
+                        <button class="button--show-more" type="submit">Search</button>
+                    </form>
+                </li>
+
+            </ul>
+
+
+        </div>
+    </div>
+
+
+    </div>
+    <div class="l-side-margins">
+        <article id="article" class="content content--footballfixtures" itemprop="mainContentOfPage" role="main">
+            <div class="content__main">
+                <div class="gs-container">
+                    <div class="content__main-column">
+
+
+                        <div class="football-matches__container">
+                            <div class="football-matches__day">
+                                {% for team in teams %}
+                                    {% if searched_item_string in team.teamName|lower or searched_item_string == 'show all' %}
+                                    <div class="football-table__container">
+
+
+                                        <div class="u-cf">
+
+                                            <table class="table table--football football-matches table--responsive-font">
+                                                <thead>
+                                                <tr>
+                                                    <td class="match__details">Points</td>
+                                                    <td class="match__details">Matches</td>
+                                                    <td class="match__details">Won</td>
+                                                    <td class="match__details">Loss</td>
+                                                    <td class="match__details">Ratio</td>
+                                                    <td class="match__details">Draw</td>
+                                                    <td class="match__details">Picture</td>
+                                                </tr>
+                                                </thead>
+
+                                                <tbody>
+
+                                                <tr class="football-match ">
+                                                    <td class="football-match__teams table-column--main">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ team.points }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="football-match__teams table-column--main">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ team.matches }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="football-match__teams table-column--main">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ team.won }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="football-match__teams table-column--main">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ team.lost }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="football-match__teams table-column--main">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ team.won|divide:team.lost|floatformat:2 }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td class="football-match__teams table-column--main">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ team.draw }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="football-match__crest football-match__crest--home">
+                                                        <img src="{{ team.teamIconUrl }}" width="100" height="100">
+                                                    </td>
+                                                </tr>
+
+
+                                                </tbody>
+                                                <caption class="table__caption table__caption--top">
+
+
+                                                    <a href="#{{ team.teamInfoId }}" class="football-matches__heading"
+                                                       id="{{ team.teamInfoId }}">{{ team.teamName }}</a>
+
+
+                                                </caption>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="content__secondary-column" aria-hidden="true"></div>
+                </div>
+            </div>
+        </article>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_content %}
+<div class="l-side-margins">
+    <article id="article" class="content content--footballfixtures" itemprop="mainContentOfPage" role="main">
+        <div class="content__main">
+            <div class="gs-container">
+                <div class="content__main-column">
+
+
+                    <div class="football-matches__container">
+                        {% for date, matches in season_matches.items %}
+                            {% if matches.0.matchResults %}
+
+                        <div class="football-matches__day">
+                            <div class="date-divider">{{ date }}</div>
+
+
+                            <div class="football-table__container">
+                                <div class="u-cf">
+
+                                    <table class="table table--football football-matches table--responsive-font">
+
+                                        <thead {% if forloop.counter > 1 %} hidden="" {% endif %}>
+                                        <tr>
+                                            <th class="match__status">Time</th>
+                                            <th class="match__details"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for match in matches %}
+                                            {% if match.matchDateTime|date:"Y-m-d" == date %}
+                                            <tr class="football-match football-match--fixture">
+                                                <td class="football-match__status football-match__status--f table-column--sub">
+
+                                                    <time datetime="{{ match.matchDateTime }}" class="js-locale-timestamp">
+                                                        {{ match.matchDateTime|date:"H:i" }}
+                                                    </time>
+
+                                                </td>
+                                                <td class="football-match__crest football-match__crest--home">
+
+                                                </td>
+                                                <td class="football-match__teams table-column--main">
+                                                    <a href="#" class="u-unstyled football-teams u-cf">
+                                                        <div class="football-match__team football-match__team--home football-team">
+                                                            <div class="football-team__name team-name" data-abbr="COL">
+                                                                <span class="team-name__long">{{ match.nameTeam1 }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+
+                                                        <div class="football-match__team football-match__team--away football-team">
+                                                            <div class="football-team__name team-name" data-abbr="ARM">
+                                                                <span class="team-name__long">{{ match.nameTeam2 }}</span>
+                                                            </div>
+                                                            <div class="football-team__score"></div>
+                                                        </div>
+
+                                                        <div class="football-teams__battleline">
+                                                        {% if match.matchResults %}
+                                                            <span class="team-name__long">{{ match.matchResults.matchResult.0.pointsTeam1 }} : {{ match.matchResults.matchResult.0.pointsTeam2 }}</span>
+                                                        {% else %}
+                                                            <span class="team-name__long"> vs </span>
+                                                        {%  endif %}
+                                                        </div>
+
+
+                                                    </a>
+                                                </td>
+                                                <td class="football-match__crest football-match__crest--home">
+
+                                                </td>
+                                            </tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        </tbody>
+                                        <caption class="table__caption table__caption--top">
+
+
+
+
+                                        </caption>
+
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="content__secondary-column" aria-hidden="true"></div>
+            </div>
+        </div>
+    </article>
+
+
+</div>
+{% endblock %}

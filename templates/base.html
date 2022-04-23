@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>All fixtures | Football | The Guardian</title>
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+</head>
+
+
+<body id="top">
+
+
+<div id="bannerandheader">
+
+
+    <header class="new-header pillar-scheme--Sport" role="banner">
+
+        <nav class="new-header__inner " data-component="nav2" role="navigation">
+
+
+            <ul class="pillars">
+
+                <li class="pillars__item">
+                    <a class="pillar-link" href="{% url 'home' %}">Tomorrow Events</a>
+                </li>
+
+                <li class="pillars__item">
+                    <a class="pillar-link" href="{% url 'teams view' 'bl1' %}">Teams BL1</a>
+                </li>
+
+                <li class="pillars__item">
+                    <a class="pillar-link" href="{% url 'teams view' 'bl2' %}">Teams BL2</a>
+                </li>
+
+                <li class="pillars__item">
+                    <a class="pillar-link" href="{% url 'teams view' 'bl3' %}">Teams BL3</a>
+                </li>
+
+            </ul>
+
+
+        </nav>
+
+
+    </header>
+
+
+</div>
+
+{% block page_content %}
+{% endblock %}
+
+
+</body>
+</html>
