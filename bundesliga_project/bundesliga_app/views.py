@@ -70,9 +70,7 @@ class AllTeamsView(TemplateView):
         context = super().get_context_data(**kwargs)
         teams = get_all_teams(kwargs['slug'])
         context['teams'] = teams
-        searched_item_string = self.request.GET.get('team')
-        if not searched_item_string:
-            searched_item_string = 'Show all'
+        searched_item_string = self.request.GET.get('team') or 'Show all'
         context['searched_item_string'] = searched_item_string.lower()
 
         return context
