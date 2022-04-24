@@ -3,11 +3,13 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-_dj9d&jgmskf%ml7^uhd8!v)ah_4q48##kji6iznz3&!92_stt'
+APP_ENV = os.getenv('APP_ENV', '')
 
-DEBUG = True
+SECRET_KEY = os.getenv('SECRET_KEY', 'test')
+'django-insecure-_dj9d&jgmskf%ml7^uhd8!v)ah_4q48##kji6iznz3&!92_stt'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(' ')
 
 DJANGO_APPS = (
     'django.contrib.admin',
@@ -27,6 +29,7 @@ BUNDESLIGA_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + BUNDESLIGA_APPS
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
