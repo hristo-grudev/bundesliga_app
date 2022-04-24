@@ -11,8 +11,8 @@
 
 
                         <div class="football-matches__container">
-                            {% for date, matches in season_matches.items %}
-                                {% if not matches.0.matchResults %}
+                            {% for data in season_upcoming_matches %}
+                                {% if data.1|length > 0 %}
                                     {% include 'matches.html' %}
                                 {% endif %}
                             {% endfor %}

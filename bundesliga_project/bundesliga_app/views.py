@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django.views.generic import TemplateView
 
 from bundesliga_project.bundesliga_app.common.helpers import get_upcoming_matches, get_all_matches, get_all_teams
@@ -49,12 +51,28 @@ class AllMatches(TemplateView):
         context = super().get_context_data(**kwargs)
         data = get_all_matches(kwargs['slug'])
         season_matches = {}
-        for match in data:
-            if match.matchDateTime.strftime('%Y-%m-%d') not in season_matches.keys():
-                season_matches[match.matchDateTime.strftime('%Y-%m-%d')] = []
-            season_matches[match.matchDateTime.strftime('%Y-%m-%d')].append(match)
+        season_upcoming_matches = {}
+        season_past_matches = {}
 
-        context['season_matches'] = season_matches
+        for match in data:
+            date = match.matchDateTime.strftime('%Y-%m-%d')
+            if date not in season_matches.keys():
+                season_matches[date] = []
+                season_upcoming_matches[date] = []
+                season_past_matches[date] = []
+            if not match.matchResults:
+                season_upcoming_matches[date].append(match)
+            else:
+                season_past_matches[date].append(match)
+            season_matches[date].append(match)
+
+        all_list = sorted(season_matches.items(), key=lambda x: x[0])
+        upcoming_list = sorted(season_upcoming_matches.items(), key=lambda x: x[0])
+        past_list = sorted(season_past_matches.items(), key=lambda x: x[0])
+
+        context['season_matches'] = all_list
+        context['season_upcoming_matches'] = upcoming_list
+        context['season_past_matches'] = past_list
 
         return context
 

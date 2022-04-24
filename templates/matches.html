@@ -1,5 +1,5 @@
 <div class="football-matches__day">
-    <div class="date-divider">{{ date }}</div>
+    <div class="date-divider">{{ data.0 }}</div>
 
 
     <div class="football-table__container">
@@ -14,8 +14,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for match in matches %}
-                    {% if match.matchDateTime|date:"Y-m-d" == date %}
+                {% for match in data.1 %}
+                    {% if match.matchDateTime|date:"Y-m-d" == data.0 %}
                         <tr class="football-match football-match--fixture">
                             <td class="football-match__status football-match__status--f table-column--sub">
 
