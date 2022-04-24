@@ -7639,4 +7639,25 @@ th, td {
     outline: none
 }
 
+* {box-sizing: border-box;}
+
+.test {
+   position: relative;
+   height: auto;
+   margin: 0 12%;
+   background-color: transparent;
+   display: flex;
+}
+.test-inner {
+   position: relative;
+   height: 50%;
+   width: 31%;
+   list-style: none;
+   display: inline-block;
+   border-style: solid;
+   border-width: 0;
+   border-color: transparent;
+   margin: 0 0 10px;
+}
+
 /*# sourceMappingURL=head.football.css.map */

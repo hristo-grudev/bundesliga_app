@@ -3,30 +3,7 @@
 {% load static %}
 
 {% block page_content %}
-    <div class="js-expand-subnav subnav subnav--article">
-        <div class="gs-container">
-            <ul class="subnav__list js-get-last-child-subnav" data-pillar-title="Sport">
-
-                <li class="subnav__item subnav__item--parent">
-                    <a class="subnav-link" href="{% url 'upcoming view' slug %}">
-                        Upcoming
-                    </a>
-                </li>
-                <li class="subnav__item subnav__item--parent">
-                    <a class="subnav-link" href="{% url 'past view' slug %}">
-                        Past
-                    </a>
-                </li>
-
-                <li class="subnav__item">
-
-                </li>
-
-            </ul>
-
-
-        </div>
-    </div>
+    {% include 'submenu.html' %}
     <div class="js-expand-subnav subnav subnav--article">
         <div class="gs-container">
             <form role="form" method="GET">

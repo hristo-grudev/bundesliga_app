@@ -20,9 +20,6 @@ class HomePage(TemplateView):
         matches_bl1 = get_upcoming_matches(BUNDESLIGA_ONE, date)
         matches_bl2 = get_upcoming_matches(BUNDESLIGA_TWO, date)
         matches_bl3 = get_upcoming_matches(BUNDESLIGA_THREE, date)
-        print(matches_bl1)
-        print(matches_bl2)
-        print(matches_bl3)
         context['matches_bl1'] = matches_bl1
         context['matches_bl2'] = matches_bl2
         context['matches_bl3'] = matches_bl3
@@ -46,12 +43,10 @@ class AllMatches(TemplateView):
 
     def get_template_names(self):
         url = self.request.path.split('/')[1]
-        print(self.TEMPLATE_NAME_DICT[url])
         return [self.TEMPLATE_NAME_DICT[url]]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        time1 = dt.now()
         data = get_all_matches(kwargs['slug'])
         season_matches = {}
         for match in data:
@@ -60,8 +55,6 @@ class AllMatches(TemplateView):
             season_matches[match.matchDateTime.strftime('%Y-%m-%d')].append(match)
 
         context['season_matches'] = season_matches
-        time2 = dt.now()
-        print(time2 - time1)
 
         return context
 

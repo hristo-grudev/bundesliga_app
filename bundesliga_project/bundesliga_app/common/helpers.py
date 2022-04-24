@@ -23,17 +23,21 @@ def get_current_group(name):
 def get_upcoming_matches(name, date):
     from_date_time = dt.combine(date, time(0, 0, 0))
     to_date_time = dt.combine(date, time(23, 59, 59))
-    print(from_date_time, to_date_time)
-    data = client.service.GetMatchdataByLeagueDateTime(from_date_time, to_date_time, name)
+    try:
+        data = client.service.GetMatchdataByLeagueDateTime(from_date_time, to_date_time, name)
+    except Exception as e:
+        data = []
     return data
 
 
 def get_all_matches(name):
-    return client.service.GetMatchdataByLeagueSaison(name, LEAGUE_SAISON).Matchdata
-
+    try:
+        data = client.service.GetMatchdataByLeagueSaison(name, LEAGUE_SAISON).Matchdata
+    except Exception as e:
+        data = []
+    return data
 
 def get_all_teams(name):
     url = f'https://api.openligadb.de/getbltable/{name}/{LEAGUE_SAISON}'
     response = requests.get(url)
-    print(response.json()[0])
     return response.json()
