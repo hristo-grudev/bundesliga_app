@@ -7,7 +7,7 @@ Open `https://bundesliga-project-app.herokuapp.com/` or
 Clone it!
 
 ```
-$ git clone git@github.com:goby-lang/sample-web-app.git
+$ git clone https://github.com/hristo-grudev/bundesliga_app.git
 ```
 
 Go into the project directory and run the command:
