@@ -36,4 +36,4 @@ Open `http://localhost:8000` and enjoy!
 
 ## Deployment example
 
-Open [https://bundesliga-project-app.herokuapp.com/](url)
+Open [https://bundesliga-project-app.herokuapp.com/](https://bundesliga-project-app.herokuapp.com/)
