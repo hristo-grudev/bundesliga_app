@@ -20,6 +20,9 @@ class HomePage(TemplateView):
         matches_bl1 = get_upcoming_matches(BUNDESLIGA_ONE, date)
         matches_bl2 = get_upcoming_matches(BUNDESLIGA_TWO, date)
         matches_bl3 = get_upcoming_matches(BUNDESLIGA_THREE, date)
+        print(matches_bl1)
+        print(matches_bl2)
+        print(matches_bl3)
         context['matches_bl1'] = matches_bl1
         context['matches_bl2'] = matches_bl2
         context['matches_bl3'] = matches_bl3

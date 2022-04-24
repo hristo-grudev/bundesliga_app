@@ -3,9 +3,17 @@ from datetime import datetime as dt
 from datetime import time
 import requests
 
-LEAGUE_SAISON = "2021"
 URL = "http://www.openligadb.de/Webservices/Sportsdata.asmx?WSDL"
 client = Client(URL)
+
+
+def last_league_season():
+    leagues = client.service.GetAvailLeagues().League
+    last_season = [league.leagueSaison for league in leagues if league.leagueShortcut in ['bl1', 'bl2', 'bl3']]
+    return max(last_season)
+
+
+LEAGUE_SAISON = last_league_season()
 
 
 def get_current_group(name):
@@ -16,7 +24,8 @@ def get_upcoming_matches(name, date):
     from_date_time = dt.combine(date, time(0, 0, 0))
     to_date_time = dt.combine(date, time(23, 59, 59))
     print(from_date_time, to_date_time)
-    return client.service.GetMatchdataByLeagueDateTime(from_date_time, to_date_time, name).Matchdata
+    data = client.service.GetMatchdataByLeagueDateTime(from_date_time, to_date_time, name)
+    return data
 
 
 def get_all_matches(name):

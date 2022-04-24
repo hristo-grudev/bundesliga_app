@@ -2,243 +2,49 @@
 {% load static %}
 
 {% block page_content %}
-<div class="l-side-margins">
-    <article id="article" class="content content--footballfixtures" itemprop="mainContentOfPage" role="main">
-        <div class="content__main">
-            <div class="gs-container">
-                <div class="content__main-column">
+    <div class="l-side-margins">
+        <article id="article" class="content content--footballfixtures" itemprop="mainContentOfPage" role="main">
+            <div class="content__main">
+                <div class="gs-container">
+                    <div class="content__main-column">
+                        <div class="football-leagues football-leagues--list modern-hidden">
+                            <ul class="football-leagues-list u-unstyled">
+
+                                <li class="football-leagues__item"><a href="{% url 'teams view' 'bl1' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    1 Teams</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'teams view' 'bl2' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    2 Teams</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'teams view' 'bl3' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    3 Teams</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'upcoming view' 'bl1' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    1 Upcoming Events</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'upcoming view' 'bl2' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    2 Upcoming Events</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'upcoming view' 'bl3' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    3 Upcoming Events</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'past view' 'bl1' %}"
+                                                                     data-link-name="view Premier League matches">Bundesliga
+                                1 Past Events</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'past view' 'bl2' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    2 Past Events</a></li>
+                                <li class="football-leagues__item"><a href="{% url 'past view' 'bl3' %}"
+                                                                      data-link-name="view Premier League matches">Bundesliga
+                                    3 Past Events</a></li>
 
 
-                    <div class="football-matches__container">
-
-                        <div class="football-matches__day">
-                            <div class="date-divider">{{ date|date:"Y-m-d" }}</div>
-
-                            <div class="football-table__container">
-                                <div class="u-cf">
-
-                                    <table class="table table--football football-matches table--responsive-font">
-                                        <thead>
-                                        <tr>
-                                            <td class="match__status">Time</td>
-                                            <td class="match__details"></td>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        {% for match in matches_bl1 %}
-                                        <tr class="football-match football-match--fixture">
-                                            <td class="football-match__status football-match__status--f table-column--sub">
-
-                                                <time datetime="2022-04-23T14:30:00+0100" class="js-locale-timestamp">
-                                                    {{ match.matchDateTime|date:"H:i" }}
-                                                </time>
-
-                                            </td>
-                                            <td class="football-match__crest football-match__crest--home">
-
-                                            </td>
-                                            <td class="football-match__teams table-column--main">
-                                                <a href="#" class="u-unstyled football-teams u-cf">
-                                                    <div class="football-match__team football-match__team--home football-team">
-                                                        <div class="football-team__name team-name" data-abbr="COL">
-                                                            <span class="team-name__long">{{ match.nameTeam1 }}</span>
-                                                        </div>
-                                                        <div class="football-team__score"></div>
-                                                    </div>
-
-                                                    <div class="football-match__team football-match__team--away football-team">
-                                                        <div class="football-team__name team-name" data-abbr="ARM">
-                                                            <span class="team-name__long">{{ match.nameTeam2 }}</span>
-                                                        </div>
-                                                        <div class="football-team__score"></div>
-                                                    </div>
-
-                                                    <div class="football-teams__battleline"></div>
-
-
-                                                </a>
-                                            </td>
-                                            <td class="football-match__crest football-match__crest--home">
-
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                        </tbody>
-                                        <caption class="table__caption table__caption--top">
-
-
-                                            <a href="{% url 'season view' 'bl1' %}" class="football-matches__heading">Bundesliga 1</a>
-
-
-                                            <span class="football-matches__date">Sat 23 April</span>
-                                        </caption>
-
-
-                                    </table>
-
-                                </div>
-                            </div>
-
-
+                            </ul>
                         </div>
-
-
-                        <div class="football-matches__day">
-
-                            <div class="football-table__container">
-                                <div class="u-cf">
-
-                                    <table class="table table--football football-matches table--responsive-font">
-                                        <thead hidden="">
-                                        <tr>
-                                            <th class="match__status">Time</th>
-                                            <th class="match__details"></th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        {% for match in matches_bl2 %}
-                                        <tr class="football-match football-match--fixture">
-                                            <td class="football-match__status football-match__status--f table-column--sub">
-
-                                                <time datetime="2022-04-23T14:30:00+0100" class="js-locale-timestamp">
-                                                    {{ match.matchDateTime|date:"H:i" }}
-                                                </time>
-
-                                            </td>
-                                            <td class="football-match__crest football-match__crest--home">
-
-                                            </td>
-                                            <td class="football-match__teams table-column--main">
-                                                <a href="#" class="u-unstyled football-teams u-cf">
-                                                    <div class="football-match__team football-match__team--home football-team">
-                                                        <div class="football-team__name team-name" data-abbr="COL">
-                                                            <span class="team-name__long">{{ match.nameTeam1 }}</span>
-                                                        </div>
-                                                        <div class="football-team__score"></div>
-                                                    </div>
-
-                                                    <div class="football-match__team football-match__team--away football-team">
-                                                        <div class="football-team__name team-name" data-abbr="ARM">
-                                                            <span class="team-name__long">{{ match.nameTeam2 }}</span>
-                                                        </div>
-                                                        <div class="football-team__score"></div>
-                                                    </div>
-
-                                                    <div class="football-teams__battleline"></div>
-
-
-                                                </a>
-                                            </td>
-                                            <td class="football-match__crest football-match__crest--home">
-
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                        </tbody>
-                                        <caption class="table__caption table__caption--top">
-
-
-                                            <a href="{% url 'season view' 'bl2' %}" class="football-matches__heading">Bundesliga 2</a>
-
-
-                                            <span class="football-matches__date">Mon 25 April</span>
-                                        </caption>
-
-
-                                    </table>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                        <div class="football-matches__day">
-
-                            <div class="football-table__container">
-                                <div class="u-cf">
-
-                                    <table class="table table--football football-matches table--responsive-font">
-                                        <thead hidden="">
-                                        <tr>
-                                            <th class="match__status">Match status / kick off time</th>
-                                            <th class="match__details">Match details</th>
-                                        </tr>
-                                        </thead>
-
-                                        <tbody>
-                                        {% for match in matches_bl3 %}
-                                        <tr class="football-match football-match--fixture">
-                                            <td class="football-match__status football-match__status--f table-column--sub">
-
-                                                <time datetime="2022-04-23T14:30:00+0100" class="js-locale-timestamp">
-                                                    {{ match.matchDateTime|date:"H:i" }}
-                                                </time>
-
-                                            </td>
-                                            <td class="football-match__crest football-match__crest--home">
-
-                                            </td>
-                                            <td class="football-match__teams table-column--main">
-                                                <a href="#" class="u-unstyled football-teams u-cf">
-                                                    <div class="football-match__team football-match__team--home football-team">
-                                                        <div class="football-team__name team-name" data-abbr="COL">
-                                                            <span class="team-name__long">{{ match.nameTeam1 }}</span>
-                                                        </div>
-                                                        <div class="football-team__score"></div>
-                                                    </div>
-
-                                                    <div class="football-match__team football-match__team--away football-team">
-                                                        <div class="football-team__name team-name" data-abbr="ARM">
-                                                            <span class="team-name__long">{{ match.nameTeam2 }}</span>
-                                                        </div>
-                                                        <div class="football-team__score"></div>
-                                                    </div>
-
-                                                    <div class="football-teams__battleline"></div>
-
-
-                                                </a>
-                                            </td>
-                                            <td class="football-match__crest football-match__crest--home">
-
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-
-                                        </tbody>
-                                        <caption class="table__caption table__caption--top">
-
-
-                                            <a href="{% url 'season view' 'bl3' %}" class="football-matches__heading">Bundesliga 3</a>
-
-
-                                            <span class="football-matches__date">Mon 25 April</span>
-                                        </caption>
-
-
-                                    </table>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-
                     </div>
-
-
                 </div>
-
-                <div class="content__secondary-column" aria-hidden="true"></div>
             </div>
-        </div>
-    </article>
 
-
-</div>
+        </article>
+    </div>
 {% endblock %}
