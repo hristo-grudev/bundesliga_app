@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 from django.views.generic import TemplateView
 
 from bundesliga_project.bundesliga_app.common.helpers import get_upcoming_matches, get_all_matches, get_all_teams

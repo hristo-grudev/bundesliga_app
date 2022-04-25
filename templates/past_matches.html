@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filter_tags %}
 
 {% block page_content %}
     {% include 'submenu.html' %}
+    <div class="gs-container">
+        <h1>{{ slug|league }}</h1>
+    </div>
     <div class="l-side-margins">
         <article id="article" class="content content--footballfixtures" itemprop="mainContentOfPage" role="main">
             <div class="content__main">
